@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_student_picker" default="compile.module.student_picker">
+  <dirname property="module.student_picker.basedir" file="${ant.file.module_student_picker}"/>
+  
+  <property name="module.jdk.home.student_picker" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.student_picker" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.student_picker" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.student_picker" value="-encoding UTF-8 -source 11 -target 11 ${compiler.args}"/>
+  
+  <property name="student_picker.output.dir" value="${module.student_picker.basedir}/out/production/Student Picker"/>
+  <property name="student_picker.testoutput.dir" value="${module.student_picker.basedir}/out/test/Student Picker"/>
+  
+  <path id="student_picker.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="student_picker.module.production.classpath">
+    <path refid="${module.jdk.classpath.student_picker}"/>
+  </path>
+  
+  <path id="student_picker.runtime.production.module.classpath">
+    <pathelement location="${student_picker.output.dir}"/>
+  </path>
+  
+  <path id="student_picker.module.classpath">
+    <path refid="${module.jdk.classpath.student_picker}"/>
+    <pathelement location="${student_picker.output.dir}"/>
+  </path>
+  
+  <path id="student_picker.runtime.module.classpath">
+    <pathelement location="${student_picker.testoutput.dir}"/>
+    <pathelement location="${student_picker.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.student_picker">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.student_picker">
+    <patternset refid="excluded.from.module.student_picker"/>
+  </patternset>
+  
+  <path id="student_picker.module.sourcepath">
+    <dirset dir="${module.student_picker.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.student_picker" depends="compile.module.student_picker.production,compile.module.student_picker.tests" description="Compile module Student Picker"/>
+  
+  <target name="compile.module.student_picker.production" depends="register.custom.compilers" description="Compile module Student Picker; production classes">
+    <mkdir dir="${student_picker.output.dir}"/>
+    <javac2 destdir="${student_picker.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.student_picker}/javac">
+      <compilerarg line="${compiler.args.student_picker}"/>
+      <bootclasspath refid="student_picker.module.bootclasspath"/>
+      <classpath refid="student_picker.module.production.classpath"/>
+      <src refid="student_picker.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.student_picker"/>
+    </javac2>
+    
+    <copy todir="${student_picker.output.dir}">
+      <fileset dir="${module.student_picker.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.student_picker.tests" depends="register.custom.compilers,compile.module.student_picker.production" description="compile module Student Picker; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.student_picker" description="cleanup module">
+    <delete dir="${student_picker.output.dir}"/>
+    <delete dir="${student_picker.testoutput.dir}"/>
+  </target>
+</project>
