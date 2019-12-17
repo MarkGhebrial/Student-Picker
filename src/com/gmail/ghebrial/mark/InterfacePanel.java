@@ -1,6 +1,5 @@
 package com.gmail.ghebrial.mark;
 
-import javax.imageio.IIOException;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,40 +10,38 @@ import java.util.Random;
 public class InterfacePanel extends JPanel {
     private static final int WIDTH = 300, HEIGHT = 200;
 
-    private static Random random = new Random();
-    private static File settings = new File("D://Student Picker//src//com//gmail//ghebrial//mark//students.txt"); //Open file of student names
+    private static String chosenStudent = null;
+    private static JLabel studentLabel = new JLabel("Press button to choose a random student");
+    private static JButton nextButton = new JButton("Next Student");
 
-    private static FileReader reader;
+    private static StudentFile period1 = null;
+    /*private static StudentFile period2 = null;
+    private static StudentFile period3 = null;
+    private static StudentFile period4 = null;
+    private static StudentFile period5 = null;
+    private static StudentFile period6 = null;
+    private static StudentFile period7 = null;*/
     static {
         try {
-            reader = new FileReader(settings);
-        } catch (FileNotFoundException e) {
+            period1 = new StudentFile("D://Student Picker//src//com//gmail//ghebrial//mark//students.txt");
+            /*period2 = new StudentFile("D://Student Picker//src//com//gmail//ghebrial//mark//students.txt");
+            period3 = new StudentFile("D://Student Picker//src//com//gmail//ghebrial//mark//students.txt");
+            period4 = new StudentFile("D://Student Picker//src//com//gmail//ghebrial//mark//students.txt");
+            period5 = new StudentFile("D://Student Picker//src//com//gmail//ghebrial//mark//students.txt");
+            period6 = new StudentFile("D://Student Picker//src//com//gmail//ghebrial//mark//students.txt");
+            period7 = new StudentFile("D://Student Picker//src//com//gmail//ghebrial//mark//students.txt");*/
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    //Create a BufferedReader object to simplify interaction with the FileReader
-    private static BufferedReader buffReader = new BufferedReader(reader);
-
-    private static ArrayList students = new ArrayList();
-    private static ArrayList chosenStudents = new ArrayList();
-
-    private static String chosenStudent = "Press button to choose a random student";
-    private static JLabel studentLabel = new JLabel(chosenStudent);
-    private static JButton nextButton = new JButton("Next Student");
-
 
     public InterfacePanel() throws IOException {
-        //Add each name to students
-        while (buffReader.ready()) { //Repeat until file is completely read
-            students.add(buffReader.readLine()); //Add the student's name to the list of names
-        }
-
 
         nextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                chosenStudent = generateName();
+                chosenStudent = period1.generateName();
                 studentLabel.setText(chosenStudent);
 
             }
@@ -54,19 +51,4 @@ public class InterfacePanel extends JPanel {
         add(studentLabel);
     }
 
-    public static String generateName () {
-        if (students.size() == chosenStudents.size()) {
-            chosenStudents.clear();
-        }
-
-        String chosenStudent;
-        do {
-            chosenStudent = (String) students.get(random.nextInt(students.size()));
-        } while (chosenStudents.contains(chosenStudent));
-
-        chosenStudents.add(chosenStudent);
-
-        System.out.println(chosenStudent);
-        return chosenStudent;
-    }
 }
