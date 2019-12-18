@@ -10,6 +10,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Student Picker/com/gmail/ghebrial/mark/InterfacePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Student Picker/com/gmail/ghebrial/mark/InterfacePanel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/gmail/ghebrial/mark/InterfacePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/gmail/ghebrial/mark/InterfacePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/gmail/ghebrial/mark/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/gmail/ghebrial/mark/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/gmail/ghebrial/mark/StudentFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/gmail/ghebrial/mark/StudentFile.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -103,7 +104,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
