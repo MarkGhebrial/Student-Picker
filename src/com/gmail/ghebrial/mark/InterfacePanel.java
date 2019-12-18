@@ -18,13 +18,13 @@ public class InterfacePanel extends JPanel {
     private static StudentFile period7 = null;
     static {
         try {
-            periodArray[0] = new StudentFile("D://Student Picker//NameLists//period1");
-            periodArray[1] = new StudentFile("D://Student Picker//NameLists//period2");
-            periodArray[2] = new StudentFile("D://Student Picker//NameLists//period3");
-            periodArray[3] = new StudentFile("D://Student Picker//NameLists//period4");
-            periodArray[4] = new StudentFile("D://Student Picker//NameLists//period5");
-            periodArray[5] = new StudentFile("D://Student Picker//NameLists//period6");
-            periodArray[6] = new StudentFile("D://Student Picker//NameLists//period7");
+            periodArray[0] = new StudentFile("Period 1","D://Student Picker//NameLists//period1");
+            periodArray[1] = new StudentFile("Period 2","D://Student Picker//NameLists//period2");
+            periodArray[2] = new StudentFile("Period 3","D://Student Picker//NameLists//period3");
+            periodArray[3] = new StudentFile("Period 4","D://Student Picker//NameLists//period4");
+            periodArray[4] = new StudentFile("Period 5","D://Student Picker//NameLists//period5");
+            periodArray[5] = new StudentFile("Period 6","D://Student Picker//NameLists//period6");
+            periodArray[6] = new StudentFile("Period 7","D://Student Picker//NameLists//period7");
         } catch (IOException e) {
             e.printStackTrace();
         }

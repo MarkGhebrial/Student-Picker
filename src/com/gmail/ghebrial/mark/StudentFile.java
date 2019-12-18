@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class StudentFile {
+    private String name;
+
     private Random random = new Random();
     private File nameFile = null;
 
@@ -16,7 +18,9 @@ public class StudentFile {
     private ArrayList students = new ArrayList();
     private ArrayList chosenStudents = new ArrayList();
 
-    StudentFile (String filePath) throws IOException {
+    StudentFile (String name, String filePath) throws IOException {
+        this.name = name;
+
         nameFile = new File(filePath); //Open file of student names
 
         try {
@@ -51,6 +55,6 @@ public class StudentFile {
     }
 
     public String toString() {
-        return nameFile.getPath();
+        return name;
     }
 }
