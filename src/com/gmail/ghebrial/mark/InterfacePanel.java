@@ -4,49 +4,48 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Random;
 
 public class InterfacePanel extends JPanel {
     private static final int WIDTH = 300, HEIGHT = 200;
 
-    private static String chosenStudent = null;
-    private static JLabel studentLabel = new JLabel("Press button to choose a random student");
-    private static JButton nextButton = new JButton("Next Student");
-
+    private static StudentFile[] periodArray = new StudentFile[7];
     private static StudentFile period1 = null;
-    /*private static StudentFile period2 = null;
+    private static StudentFile period2 = null;
     private static StudentFile period3 = null;
     private static StudentFile period4 = null;
     private static StudentFile period5 = null;
     private static StudentFile period6 = null;
-    private static StudentFile period7 = null;*/
+    private static StudentFile period7 = null;
     static {
         try {
-            period1 = new StudentFile("D://Student Picker//src//com//gmail//ghebrial//mark//students.txt");
-            /*period2 = new StudentFile("D://Student Picker//src//com//gmail//ghebrial//mark//students.txt");
-            period3 = new StudentFile("D://Student Picker//src//com//gmail//ghebrial//mark//students.txt");
-            period4 = new StudentFile("D://Student Picker//src//com//gmail//ghebrial//mark//students.txt");
-            period5 = new StudentFile("D://Student Picker//src//com//gmail//ghebrial//mark//students.txt");
-            period6 = new StudentFile("D://Student Picker//src//com//gmail//ghebrial//mark//students.txt");
-            period7 = new StudentFile("D://Student Picker//src//com//gmail//ghebrial//mark//students.txt");*/
+            periodArray[0] = new StudentFile("D://Student Picker//NameLists//period1");
+            periodArray[1] = new StudentFile("D://Student Picker//NameLists//period2");
+            periodArray[2] = new StudentFile("D://Student Picker//NameLists//period3");
+            periodArray[3] = new StudentFile("D://Student Picker//NameLists//period4");
+            periodArray[4] = new StudentFile("D://Student Picker//NameLists//period5");
+            periodArray[5] = new StudentFile("D://Student Picker//NameLists//period6");
+            periodArray[6] = new StudentFile("D://Student Picker//NameLists//period7");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    private static JComboBox periodMenu = new JComboBox(periodArray);
+    private static JLabel studentLabel = new JLabel("Press button to choose a random student");
+    private static JButton nextButton = new JButton("Next Student");
 
-    public InterfacePanel() throws IOException {
+    public InterfacePanel() {
+
+        //periodList.
 
         nextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                chosenStudent = period1.generateName();
-                studentLabel.setText(chosenStudent);
-
+                studentLabel.setText(periodArray[periodMenu.getSelectedIndex()].generateName());
             }
         });
 
+        add(periodMenu);
         add(nextButton);
         add(studentLabel);
     }

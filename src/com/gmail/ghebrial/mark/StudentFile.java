@@ -5,25 +5,22 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class StudentFile {
-    private static Random random = new Random();
-    private static File settings = null;
+    private Random random = new Random();
+    private File nameFile = null;
 
-    private static FileReader reader;
-    static {
-
-    }
+    private FileReader reader;
 
     //Create a BufferedReader object to simplify interaction with the FileReader
-    private static BufferedReader buffReader;
+    private BufferedReader buffReader;
 
-    private static ArrayList students = new ArrayList();
-    private static ArrayList chosenStudents = new ArrayList();
+    private ArrayList students = new ArrayList();
+    private ArrayList chosenStudents = new ArrayList();
 
     StudentFile (String filePath) throws IOException {
-        settings = new File(filePath); //Open file of student names
+        nameFile = new File(filePath); //Open file of student names
 
         try {
-            reader = new FileReader(settings);
+            reader = new FileReader(nameFile);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -37,7 +34,7 @@ public class StudentFile {
     }
 
 
-    public static String generateName () {
+    public String generateName () {
         if (students.size() == chosenStudents.size()) {
             chosenStudents.clear();
         }
@@ -51,5 +48,9 @@ public class StudentFile {
 
         System.out.println(chosenStudent);
         return chosenStudent;
+    }
+
+    public String toString() {
+        return nameFile.getPath();
     }
 }
