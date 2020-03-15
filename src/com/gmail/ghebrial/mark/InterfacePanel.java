@@ -1,40 +1,28 @@
 package com.gmail.ghebrial.mark;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 
 public class InterfacePanel extends JPanel {
-    private static final int WIDTH = 300, HEIGHT = 200;
 
     //This array will be in the drop-down menu to select the period
-    private static StudentFile[] periodArray = new StudentFile[7];
+    private StudentFile[] periodArray = new StudentFile[7];
 
-    //Initialise the contents of periodArray
-    static {
-        //IPMORTANT, THE PROGRAM WILL NOT WORK UNLESS YOU CHANGE THIS VARIABLE TO THE FILEPATH WITH THE .txt FILES OF THE NAMES
-        //TODO: Make this automatic somehow
-        String rootPath = "D://Student Picker//NameLists";
-        try {
-            periodArray[0] = new StudentFile("Period 1",rootPath + "//period1");
-            periodArray[1] = new StudentFile("Period 2",rootPath + "//period2");
-            periodArray[2] = new StudentFile("Period 3",rootPath + "//period3");
-            periodArray[3] = new StudentFile("Period 4",rootPath + "//period4");
-            periodArray[4] = new StudentFile("Period 5",rootPath + "//period5");
-            periodArray[5] = new StudentFile("Period 6",rootPath + "//period6");
-            periodArray[6] = new StudentFile("Period 7",rootPath + "//period7");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+    //IPMORTANT, THE PROGRAM WILL NOT WORK UNLESS YOU CHANGE THIS VARIABLE TO THE FILEPATH WITH THE .txt FILES OF THE NAMES
+    //TODO: Make this automatic somehow
+    private String rootPath = "D://Student Picker//NameLists";
 
     //Create the graphic elements for the GUI
-    private static JComboBox periodMenu = new JComboBox(periodArray);
-    private static JLabel studentLabel = new JLabel("Press button to choose a random student");
-    private static JButton nextButton = new JButton("Next Student");
+    private  JComboBox periodMenu = new JComboBox(periodArray);
+    private  JLabel studentLabel = new JLabel("Press button to choose a random student");
+    private  JButton nextButton = new JButton("Next Student");
 
     public InterfacePanel() {
+
+        LoadFiles(rootPath);
 
         //Run this code when nextButton is pressed
         nextButton.addActionListener(new ActionListener() {
@@ -51,4 +39,19 @@ public class InterfacePanel extends JPanel {
         add(studentLabel);
     }
 
+    private void LoadFiles (String rootPath) {
+        try {
+            periodArray[0] = new StudentFile("Period 1",rootPath + "//period1");
+            periodArray[1] = new StudentFile("Period 2",rootPath + "//period2");
+            periodArray[2] = new StudentFile("Period 3",rootPath + "//period3");
+            periodArray[3] = new StudentFile("Period 4",rootPath + "//period4");
+            periodArray[4] = new StudentFile("Period 5",rootPath + "//period5");
+            periodArray[5] = new StudentFile("Period 6",rootPath + "//period6");
+            periodArray[6] = new StudentFile("Period 7",rootPath + "//period7");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        periodMenu = new JComboBox(periodArray);
+    }
 }
